@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PatientService {
@@ -33,5 +34,8 @@ public class PatientService {
         return PatientMapper.toDto(newPatient);
     }
 
+    public PatientResponseDTO updatePatient(UUID id, PatientRequestDTO patientRequestDTO){
+        Patient patient = patientRepository.findById(id).orElseThrow(() -> new PatientNotFoundException("Patient not found with ID:",id));
+    }
 
 }
